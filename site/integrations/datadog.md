@@ -19,7 +19,9 @@ visibility: public
 status: EE
 ---
 
-Polyaxon provides an abstraction called ‘stats’ which is used for internal monitoring, generally timings and various counters. The default backend `noop` simply discards them.
+Polyaxon provides an abstraction called `metrics` which is used for internal monitoring, generally timings and various counters. 
+The default backend `noop` simply discards them.
+
 This guide will help you set up to a [Datadog](https://www.datadoghq.com/) backend to sends these metrics.
 
 ## Make sure the default Helm metrics deployment is disabled
@@ -36,6 +38,7 @@ Send Polyaxon metrics emitted to the Datadog REST API over HTTPS.
 ```yaml
 externalServices:
   metrics:
+    enabled: true
     backend: datadog
     options:
       api_key:
@@ -51,6 +54,7 @@ Use the DogStatsD backend requires a [Datadog Agent](https://docs.datadoghq.com/
 ```yaml
 externalServices:
   metrics:
+    enabled: true
     backend: datadog-statsd
     options:
       statsd_host:
